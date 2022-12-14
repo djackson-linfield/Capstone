@@ -1,0 +1,31 @@
+<h1>Home Page</h1>
+<div class="listing">
+  <div *ngIf="!tourneys">
+    <p>Loading...</p>
+  </div>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>GameId</th>
+        <th>Online</th>
+        <th>Private</th>
+        <th>Time</th>
+
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let tourney of tourneys; let i = index">
+        <td>{{tourney.name}}</td>
+        <td>{{games[i]}}</td>
+        <td>{{tourney.online}}</td>
+        <td>{{tourney.private}}</td>
+        <td>{{tourney.time}}</td>
+
+      </tr>
+    </tbody>
+
+  </table>
+  </div>

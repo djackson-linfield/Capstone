@@ -1,0 +1,50 @@
+<h1>{{user.name}}</h1>
+<div class="listing">
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Wins:</th>
+        <th>Losses:</th>
+        <th>Team</th>
+        <th>Favorite Game</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{user.wins}}</td>
+        <td>{{user.loss}}</td>
+        <td>{{teamName}}</td>
+        <td>{{gameName}}</td>
+
+      </tr>
+    </tbody>
+
+  </table>
+</div>
+<div class="listing">
+  <div *ngIf="!tourneys">
+    <p>Loading...</p>
+  </div>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Tournaments Entered</th>
+        <th>Start Time</th>
+
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let tourney of tourneys">
+        <td>{{tourney.name}}</td>
+        <td>{{tourney.time}}</td>
+
+      </tr>
+    </tbody>
+
+  </table>
+
+</div>

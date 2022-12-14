@@ -1,0 +1,82 @@
+
+
+<ng-template #myModal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Login</h4>
+    <button type="button" class="close" aria-label="Close" (click)="cancel()">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+    <p *ngIf="errorMessage">{{errorMessage}}</p>
+
+    <p>Username:</p>
+    <p><input type="text" class="form-control" [(ngModel)]="username" /></p>
+    <p>Password:</p>
+    <p><input type="password" class="form-control" [(ngModel)]="password" /></p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="save()">Login</button>
+    <button type="button" class="btn btn-danger" (click)="cancel()">Cancel</button>
+    <button type="button" class="btn btn-danger" (click)="open(createModal)">Create User</button>
+  </div>
+</ng-template>
+
+<ng-template #createModal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Create User</h4>
+    <button type="button" class="close" aria-label="Close" (click)="cancel()">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+    <p *ngIf="errorMessage">{{errorMessage}}</p>
+
+    <p>Username:</p>
+    <p><input type="text" class="form-control" [(ngModel)]="createUsername" /></p>
+    <p>Password:</p>
+    <p><input type="password" class="form-control" [(ngModel)]="createPassword" /></p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="createUser()">Create</button>
+    <button type="button" class="btn btn-danger" (click)="cancel()">Cancel</button>
+  </div>
+</ng-template>
+
+<header>
+  <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+    <div class="container">
+      <a class="navbar-brand" [routerLink]="['/']">Round1</a>
+      <button class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target=".navbar-collapse"
+              aria-label="Toggle navigation"
+              [attr.aria-expanded]="isExpanded"
+              (click)="toggle()">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="navbar-collapse collapse d-sm-inline-flex justify-content-end"
+           [ngClass]="{ show: isExpanded }">
+        <ul class="navbar-nav flex-grow">
+          <li class="nav-item" [routerLinkActive]="['link-active']">
+            <a class="nav-link text-dark" [routerLink]="['/event']">Events</a>
+          </li>
+          <li class="nav-item" [routerLinkActive]="['link-active']">
+            <a class="nav-link text-dark" [routerLink]="['/team']">Teams</a>
+          </li>
+          <li class="nav-item" [routerLinkActive]="['link-active']">
+            <a class="nav-link text-dark" [routerLink]="['/about-us']">About Us</a>
+          </li>
+          <li><button *ngIf="!isLoggedIn()" a class="nav-link text-dark" (click)="open(myModal)">Login</button></li>
+          <li><button *ngIf="isLoggedIn()" a class="nav-link text-dark" (click)="userProfile()">Profile</button></li>
+          <li><button *ngIf="isLoggedIn()" a class="nav-link text-dark" (click)="logout()">Logout</button></li>
+
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>

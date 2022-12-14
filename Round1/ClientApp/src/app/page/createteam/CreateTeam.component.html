@@ -1,0 +1,31 @@
+<div class="main-area">
+  <div class="context-area">
+    <div class="header">
+      <h1>Teams</h1>
+      <hr>
+    </div>
+    <div class="form-area">
+      <h3>Create Team</h3>
+      <form #eventsForm="ngForm" (ngSubmit)="getEventFormData(eventsForm.value)">
+
+        <input type="text" ngModel name="name" placeholder="Enter Name">
+        <br> <br>
+
+        <label for="gameId">Game:</label>
+        <select id="gameId" ngModel name="gameId">
+          <option value="1">Guilty Gear: Strive</option>
+          <option value="2">Street Fighter: V</option>
+          <option value="3">Tekken 7</option>
+        </select>
+        <br> <br>
+
+        <input type="text" ngModel name="Description" placeholder="Enter Description">
+        <br> <br>
+        <input type="checkbox" ngModel name="private">
+        <label for="private"> Private?</label><br>
+        <button>Add New Team</button>
+      </form>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,64 @@
+<ng-template #myModal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Login</h4>
+    <button type="button" class="close" aria-label="Close" (click)="cancel()">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+    <p *ngIf="errorMessage">{{errorMessage}}</p>
+
+    <p>Username:</p>
+    <p><input type="text" class="form-control" [(ngModel)]="username" /></p>
+    <p>Password:</p>
+    <p><input type="password" class="form-control" [(ngModel)]="password" /></p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="save()">Login</button>
+    <button type="button" class="btn btn-danger" (click)="cancel()">Cancel</button>
+  </div>
+</ng-template>
+
+
+
+<style>
+  #mybutton {
+    position: relative;
+    top: 0;
+    right: 0;
+  }
+</style>
+<h1>Teams</h1>
+<div class="listing">
+  <div *ngIf="!teams">
+    <p>Loading...</p>
+  </div>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Private</th>
+        <th>Main Game</th>
+
+        <th><button id="mybutton"  *ngIf="UserTeamNull()" class="btm btn-primary" (click)="CreateTeam()">Create Team</button></th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let team of teams; let i  = index">
+        <td>{{team.name}}</td>
+        <td>{{team.description}}</td>
+        <td>{{team.private}}</td>
+        <td>{{games[i]}}</td>
+
+        <td><button *ngIf="!isLoggedIn()" class="btn btn-primary" (click)="open(myModal)">Join Team</button></td>
+        <td><button *ngIf="UserTeamNull()" class="btn btn-primary" (click)="JoinTeam(team)">Join Team</button></td>
+        <td><button *ngIf="IsInThisTeam(team)" class="btn btn-primary" (click)="LeaveTeam()">Leave Team</button></td>
+      </tr>
+    </tbody>
+
+  </table>
+  </div>

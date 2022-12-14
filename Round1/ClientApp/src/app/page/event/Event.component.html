@@ -1,0 +1,67 @@
+
+
+<ng-template #myModal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Login</h4>
+    <button type="button" class="close" aria-label="Close" (click)="cancel()">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+    <p *ngIf="errorMessage">{{errorMessage}}</p>
+
+    <p>Username:</p>
+    <p><input type="text" class="form-control" [(ngModel)]="username" /></p>
+    <p>Password:</p>
+    <p><input type="password" class="form-control" [(ngModel)]="password" /></p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="save()">Login</button>
+    <button type="button" class="btn btn-danger" (click)="cancel()">Cancel</button>
+  </div>
+</ng-template>
+
+<style>
+  #mybutton {
+    position: relative;
+    top: 0;
+    right: 0;
+  }
+</style>
+<h1>Events</h1>
+<div class="listing">
+  <div *ngIf="!tourneys">
+    <p>Loading...</p>
+  </div>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Game</th>
+        <th>Online</th>
+        <th>Private</th>
+        <th>Time</th>
+
+        <th><button id="mybutton" class="btm btn-primary" (click)="CreateEvent()">Create Event</button></th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let tourney of tourneys; let i = index">
+        <td>{{tourney.name}}</td>
+        <td>{{games[i]}}</td>
+        <td>{{tourney.online}}</td>
+        <td>{{tourney.private}}</td>
+        <td>{{tourney.time}}</td>
+        <td><button class="btn btn-primary" (click)="EventDetails(tourney.tourneyId)">Event Details</button></td>
+        <td><button *ngIf="!isLoggedIn()" class="btn btn-primary" (click)="open(myModal)">Join Event</button></td>
+        <td><button *ngIf="isLoggedIn()" class="btn btn-primary" (click)="JoinEvent(tourney)">Join Event</button></td>
+
+      </tr>
+    </tbody>
+
+  </table>
+  </div>
+

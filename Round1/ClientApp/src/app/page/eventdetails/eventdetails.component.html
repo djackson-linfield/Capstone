@@ -1,0 +1,21 @@
+<h1>Players in Event</h1>
+<div class="listing">
+  <div *ngIf="!users">
+    <p>Loading...</p>
+  </div>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users; let i = index">
+        <td>{{user.name}}</td>
+      </tr>
+    </tbody>
+
+  </table>
+</div>
+
